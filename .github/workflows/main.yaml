@@ -1,6 +1,6 @@
 # This is a basic workflow we will use in this demo
 
-name: demo-gitops
+name: Demo Gitops
 permissions:
   id-token: write # required to use OIDC authentication
   contents: write # required
