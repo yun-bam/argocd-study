@@ -6,7 +6,7 @@ replicaCount: 1
 image:
   pullPolicy: IfNotPresent
   repository: ba858a82-kr2-registry.container.nhncloud.com/ybhan-test-ncr
-  version: latest
+  version: main-9c81b75
 
 imagePullSecrets: []
 nameOverride: ""
