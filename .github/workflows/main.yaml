@@ -39,3 +39,15 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: ${{ secrets.NCR_CONTAINER_REGISTRY }}/tag-name:latest
+
+    - name: Update Version
+      run: |
+          git_hash=$(git rev-parse --short "$GITHUB_SHA")
+          version=$(cat ./charts/helm-example/values.yaml | grep version: | awk '{print $2}')
+          sed -i "s/$version/${GITHUB_REF##*/}-$git_hash/" ./charts/helm-example/values.yaml
+          
+    - name: Commit and push changes
+      uses: devops-infra/action-commit-push@v0.3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        commit_message: Version updated
